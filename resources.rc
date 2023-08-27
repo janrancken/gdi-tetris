@@ -1,0 +1,171 @@
+#include <windows.h>
+#include "resources.h"
+
+MYMENU MENU
+{    
+
+POPUP "&File" {
+     MENUITEM "&New Game         F2", IDC_RESTART	
+     MENUITEM "&Sound              ", IDC_SOUND
+     MENUITEM "Show &Next Piece    ", IDC_PREVIEW
+     MENUITEM "&Pause            F3", IDC_PAUSE
+     MENUITEM "&Hiscores...        ", IDC_HISCORES		
+     MENUITEM "&Background Color...", IDC_BGCOLOR
+     MENUITEM "&About...           ", IDC_ABOUT		
+     MENUITEM SEPARATOR 
+     MENUITEM "&Exit         Alt+F4", IDC_QUIT
+     }
+
+POPUP "&Level" {
+     MENUITEM "&Novice", IDC_NOVICE	 
+     MENUITEM "&Amateur",IDC_AMATEUR
+     MENUITEM "&Expert", IDC_EXPERT
+     }
+
+POPUP "&Graphics Set" {
+     MENUITEM "Set &1", IDC_SET1	 
+     MENUITEM "Set &2", IDC_SET2
+     MENUITEM "Set &3", IDC_SET3
+     }
+	
+}
+
+
+
+
+
+MYACCELERATORS ACCELERATORS
+BEGIN
+   VK_F2 , IDC_RESTART, VIRTKEY
+   VK_F3 , IDC_PAUSE, VIRTKEY	
+
+END
+
+
+
+/* Bitmaps and Icons */
+
+MYICON ICON "gditetris.ico"
+
+IDBM_LOGO BITMAP "bitmap.bmp"
+
+IDBM_11 BITMAP "piece4_01.bmp"
+IDBM_12 BITMAP "piece4_02.bmp"
+IDBM_13 BITMAP "piece4_03.bmp"
+IDBM_14 BITMAP "piece4_04.bmp"
+IDBM_15 BITMAP "piece4_05.bmp"
+IDBM_16 BITMAP "piece4_06.bmp"
+IDBM_17 BITMAP "piece4_07.bmp"
+
+IDBM_21 BITMAP "piece2_01.bmp"
+IDBM_22 BITMAP "piece2_02.bmp"
+IDBM_23 BITMAP "piece2_03.bmp"
+IDBM_24 BITMAP "piece2_04.bmp"
+IDBM_25 BITMAP "piece2_05.bmp"
+IDBM_26 BITMAP "piece2_06.bmp"
+IDBM_27 BITMAP "piece2_07.bmp"
+
+IDBM_31 BITMAP "piece3_01.bmp"
+IDBM_32 BITMAP "piece3_02.bmp"
+IDBM_33 BITMAP "piece3_03.bmp"
+IDBM_34 BITMAP "piece3_04.bmp"
+IDBM_35 BITMAP "piece3_05.bmp"
+IDBM_36 BITMAP "piece3_06.bmp"
+IDBM_37 BITMAP "piece3_07.bmp"
+
+IDBM_PRE01 BITMAP "pre01.bmp"
+IDBM_PRE02 BITMAP "pre02.bmp"
+IDBM_PRE03 BITMAP "pre03.bmp"
+IDBM_PRE04 BITMAP "pre04.bmp"
+IDBM_PRE05 BITMAP "pre05.bmp"
+IDBM_PRE06 BITMAP "pre06.bmp"
+IDBM_PRE07 BITMAP "pre07.bmp"
+
+
+ABOUTDLG DIALOG 6, 18, 180, 140
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "Helv"
+{
+    GROUPBOX        "", -1, 6, 6, 168, 128
+    CTEXT           "GDI Tetris 1.0", -1, 20, 20, 148, 25
+    CTEXT           "Programming and Design by Jan Rancken, January 2001", 
+                    -1, 13, 79, 157, 23
+    ICON            "MYICON", -1, 80, 43
+    DEFPUSHBUTTON   "&Ok", IDOK, 70, 110, 40, 12
+}
+
+
+
+HISCOREDLG DIALOG 6, 18, 180, 80
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Hiscore"
+FONT 8, "Helv"
+{
+    LTEXT  "Enter your name", -1, 10, 20, 148, 25
+    EDITTEXT IDC_HISCORE_INPUT, 10, 30, 148, 12
+    DEFPUSHBUTTON   "&Ok", IDOK, 70, 60, 40, 12
+
+}
+
+
+HISCOREPOPUP DIALOG 6, 18, 230, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Highest Scores"
+FONT 8, "Courier"
+{
+    GROUPBOX        "", -1, 6, 6, 217, 167
+    LTEXT           "Name                  Score   Lines   Level",   -1,  35,  19, 180, 12
+ 
+
+
+    LTEXT           "Olle",   IDC_HS_01, 15,  40, 200, 12
+    LTEXT           "Kalle",  IDC_HS_02, 15,  50, 200, 12
+    LTEXT           "Klass1", IDC_HS_03, 15,  60, 200, 12
+    LTEXT           "Klass2", IDC_HS_04, 15,  70, 200, 12
+    LTEXT           "Klass3", IDC_HS_05, 15,  80, 200, 12
+    LTEXT           "Klass4", IDC_HS_06, 15,  90, 200, 12
+    LTEXT           "Klass5", IDC_HS_07, 15, 100, 200, 12
+    LTEXT           "Klass6", IDC_HS_08, 15, 110, 200, 12
+    LTEXT           "Klass7", IDC_HS_09, 15, 120, 200, 12
+    LTEXT           "Klass8", IDC_HS_10, 15, 130, 200, 12
+
+    DEFPUSHBUTTON   "&Ok", IDOK, 95, 155, 40, 12
+}
+
+
+
+
+
+
+/* Wave Files */
+
+IDWV_LINE_1   WAVE  PRELOAD "Line1.wav"
+IDWV_LINE_2   WAVE  PRELOAD "Line2.wav"
+IDWV_ROTATE WAVE  PRELOAD "Rotate.wav"
+IDWV_INPLACE WAVE PRELOAD "InPlace.wav"
+
+IDF_MYFONT FONT PRELOAD "gditetris.ttf"
+
+
+1 VERSIONINFO
+FILEVERSION 4, 0, 3, 17
+PRODUCTVERSION 3, 0, 0, 0
+FILEFLAGSMASK 0
+FILEOS 0x40000
+FILETYPE 1
+{
+ BLOCK "StringFileInfo"
+ {
+  BLOCK "040904E4"
+  {
+   VALUE "CompanyName", "Jan Rancken Software"
+   VALUE "FileDescription", "GDI Tetris - Simple Tetris Clone"
+   VALUE "FileVersion", "1.0b"
+   VALUE "LegalCopyright", "GNU Public License"
+   VALUE "ProductVersion", "1.0"
+  }
+ }
+}
+
+
