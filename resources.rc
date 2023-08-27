@@ -45,33 +45,33 @@ END
 
 /* Bitmaps and Icons */
 
-MYICON ICON "gditetris.ico"
+MYICON ICON "resources\icons\gditetris.ico"
 
-IDBM_LOGO BITMAP "bitmap.bmp"
+IDBM_LOGO BITMAP "resources\images\bitmap.bmp"
 
-IDBM_11 BITMAP "piece4_01.bmp"
-IDBM_12 BITMAP "piece4_02.bmp"
-IDBM_13 BITMAP "piece4_03.bmp"
-IDBM_14 BITMAP "piece4_04.bmp"
-IDBM_15 BITMAP "piece4_05.bmp"
-IDBM_16 BITMAP "piece4_06.bmp"
-IDBM_17 BITMAP "piece4_07.bmp"
+IDBM_11 BITMAP "resources\images\piece4_01.bmp"
+IDBM_12 BITMAP "resources\images\piece4_02.bmp"
+IDBM_13 BITMAP "resources\images\piece4_03.bmp"
+IDBM_14 BITMAP "resources\images\piece4_04.bmp"
+IDBM_15 BITMAP "resources\images\piece4_05.bmp"
+IDBM_16 BITMAP "resources\images\piece4_06.bmp"
+IDBM_17 BITMAP "resources\images\piece4_07.bmp"
 
-IDBM_21 BITMAP "piece2_01.bmp"
-IDBM_22 BITMAP "piece2_02.bmp"
-IDBM_23 BITMAP "piece2_03.bmp"
-IDBM_24 BITMAP "piece2_04.bmp"
-IDBM_25 BITMAP "piece2_05.bmp"
-IDBM_26 BITMAP "piece2_06.bmp"
-IDBM_27 BITMAP "piece2_07.bmp"
+IDBM_21 BITMAP "resources\images\piece2_01.bmp"
+IDBM_22 BITMAP "resources\images\piece2_02.bmp"
+IDBM_23 BITMAP "resources\images\piece2_03.bmp"
+IDBM_24 BITMAP "resources\images\piece2_04.bmp"
+IDBM_25 BITMAP "resources\images\piece2_05.bmp"
+IDBM_26 BITMAP "resources\images\piece2_06.bmp"
+IDBM_27 BITMAP "resources\images\piece2_07.bmp"
 
-IDBM_31 BITMAP "piece3_01.bmp"
-IDBM_32 BITMAP "piece3_02.bmp"
-IDBM_33 BITMAP "piece3_03.bmp"
-IDBM_34 BITMAP "piece3_04.bmp"
-IDBM_35 BITMAP "piece3_05.bmp"
-IDBM_36 BITMAP "piece3_06.bmp"
-IDBM_37 BITMAP "piece3_07.bmp"
+IDBM_31 BITMAP "resources\images\piece3_01.bmp"
+IDBM_32 BITMAP "resources\images\piece3_02.bmp"
+IDBM_33 BITMAP "resources\images\piece3_03.bmp"
+IDBM_34 BITMAP "resources\images\piece3_04.bmp"
+IDBM_35 BITMAP "resources\images\piece3_05.bmp"
+IDBM_36 BITMAP "resources\images\piece3_06.bmp"
+IDBM_37 BITMAP "resources\images\piece3_07.bmp"
 
 IDBM_PRE01 BITMAP "pre01.bmp"
 IDBM_PRE02 BITMAP "pre02.bmp"
@@ -140,10 +140,10 @@ FONT 8, "Courier"
 
 /* Wave Files */
 
-IDWV_LINE_1   WAVE  PRELOAD "Line1.wav"
-IDWV_LINE_2   WAVE  PRELOAD "Line2.wav"
-IDWV_ROTATE WAVE  PRELOAD "Rotate.wav"
-IDWV_INPLACE WAVE PRELOAD "InPlace.wav"
+IDWV_LINE_1   WAVE  PRELOAD "resources\sounds\Line1.wav"
+IDWV_LINE_2   WAVE  PRELOAD "resources\sounds\Line2.wav"
+IDWV_ROTATE WAVE  PRELOAD "resources\sounds\Rotate.wav"
+IDWV_INPLACE WAVE PRELOAD "resources\sounds\InPlace.wav"
 
 IDF_MYFONT FONT PRELOAD "gditetris.ttf"
 
@@ -167,5 +167,3 @@ FILETYPE 1
   }
  }
 }
-
-
