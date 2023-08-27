@@ -1,6 +1,7 @@
 CC=gcc
 CFLAGS=-Wall 
-LIBS= -lcomctl32 -lkernel32 -lgdi32 -lcomdlg32 -lwinmm -mwindows
+LIBS=-lcomctl32 -lkernel32 -lgdi32 -lcomdlg32 -lwinmm -mwindows
+COPY=copy
 
 
 gditetris.exe:	gditetris.o resources.o Makefile
