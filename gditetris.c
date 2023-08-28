@@ -58,7 +58,7 @@ BYTE nextpiece;
 BYTE level = IDC_NOVICE;
 BYTE initWidth = 10;
 BYTE initHeight = 24;
-BYTE mciBuf[128];
+LPSTR mciBuf;
 BYTE blockset = 0;
 WORD xPixPerPiece;
 WORD yPixPerPiece;
@@ -94,6 +94,8 @@ void fatal_error_win(LPSTR str)
   sprintf(msg, "%s failed: GetLastError returned %ld\n",
           str, er);
   MessageBox(NULL, msg, "Fatal Error", MB_OK);
+  if(mciBuf)
+    free(mciBuf);
   ExitProcess(er);
 }
 
@@ -118,7 +120,6 @@ HFONT SetFont()
     return CreateFontIndirect(&f);
     */
 
-  HANDLE hMyFont = INVALID_HANDLE_VALUE;       // Here, we will (hopefully) get our font handle
   HINSTANCE hInstance = GetModuleHandle(NULL); // Or could even be a DLL's HINSTANCE
   HRSRC hFntRes = FindResource(hInstance, MAKEINTRESOURCE(IDF_MYFONT), RT_FONT);
   if (hFntRes)
@@ -128,13 +129,14 @@ HFONT SetFont()
     {
       void *FntData = LockResource(hFntMem); // Lock it into accessible memory
       DWORD nFonts = 0, len = SizeofResource(hInstance, hFntMem);
-      hMyFont = AddFontMemResourceEx(FntData, len, NULL, &nFonts); // Fake install font!
+      AddFontMemResourceEx(FntData, len, NULL, &nFonts); // Fake install font!
     }
     LOGFONT MyFont = {16, 8, 0, 0, 400, FALSE, FALSE, FALSE, ANSI_CHARSET,
                       OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
                       VARIABLE_PITCH | FF_SWISS, "Stencil"};
     return CreateFontIndirect(&MyFont);
   }
+  return NULL;
 }
 
 void ChooseBgColor()
@@ -224,13 +226,13 @@ HKEY get_reg_key()
   /* Opens the RegKey, and if it doesn't exist, creates it. */
   LONG err = RegOpenKeyExA(HKEY_CURRENT_USER, "SoftWare", 0, KEY_CREATE_SUB_KEY, &hKey);
   CHAR msg[256];
-  sprintf(msg, "RegOpenKeyExA Error %d ", err);
+  sprintf(msg, "RegOpenKeyExA Error %d ", (int)  err);
   if (err != ERROR_SUCCESS)
     fatal_error_win(msg);
   err = RegCreateKeyExA(hKey, "Jan Rancken Software", 0, NULL, 0x00000000L, KEY_CREATE_SUB_KEY, NULL, &hKey, NULL);
   if (err != ERROR_SUCCESS)
   {
-    sprintf(msg, "RegCreateKeyExA Error %d ", err);
+    sprintf(msg, "RegCreateKeyExA Error %d ", (int) err);
     fatal_error_win(msg);
   }
 
@@ -1061,7 +1063,7 @@ void myTimer()
       {
         if (midi)
           mciSendString("stop gametune", mciBuf, 0, 0);
-        MessageBoxW(hMainWin, "Game Over", "GDI Tetris", MB_OK);
+        MessageBox(hMainWin, "Game Over", "GDI Tetris", MB_OK);
 
         updatehiscoretable(score, hstable);
         return;
@@ -1146,7 +1148,7 @@ window_callback(HWND hwnd, UINT nMsg,
     GetUserName(namebuffer, &len);
     bgBrush = CreateSolidBrush(bgcolor1);
     bgBrush2 = CreateSolidBrush(bgcolor2);
-    hMyFont = SetFont();
+    SetFont();
     readbmps();
     if (loadhiscoretable(hiscorefile, hstable) != 0)
       createhiscoretable(hstable);
@@ -1356,6 +1358,7 @@ WinMain(
   wndClass.lpszClassName = className;
   RegisterClass(&wndClass);
   srand((int)GetCurrentTime());
+  mciBuf = malloc(128);
   if (mciSendString("open .\\gditetris.mid alias gametune", mciBuf, 0, 0) != 0)
     midi = FALSE;
   else
@@ -1391,5 +1394,7 @@ WinMain(
   /* restore old keyboard setting */
   SystemParametersInfo(SPI_SETKEYBOARDDELAY, kbDelaySave, NULL, SPIF_SENDCHANGE);
   SystemParametersInfo(SPI_SETKEYBOARDSPEED, kbSpeedSave, NULL, SPIF_SENDCHANGE);
+  if(mciBuf)
+    free(mciBuf);
   return msg.wParam;
 }

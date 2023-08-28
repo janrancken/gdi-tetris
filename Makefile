@@ -1,7 +1,8 @@
 CC=gcc
 CFLAGS=-Wall 
 LIBS=-lcomctl32 -lkernel32 -lgdi32 -lcomdlg32 -lwinmm -mwindows
-COPY=copy
+COPY=cp
+DELETE=rm
 
 
 gditetris.exe:	gditetris.o resources.o Makefile
@@ -15,5 +16,4 @@ resources.o:	resources.rc resources.h Makefile
 	windres -i resources.rc -o resources.o
 
 clean:
-	@del *.*~
-	@del *.o
+	${DELETE} *.o
